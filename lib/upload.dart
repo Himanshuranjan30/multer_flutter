@@ -59,8 +59,20 @@ class _ImageUploadState extends State<ImageUpload> {
     });
   }
 
+  bool isloaded = false;
+  var result;
+  fetch() async {
+    var response = await http.get('http://192.168.0.8:3000/image');
+    result = jsonDecode(response.body);
+    print(result[0]['image']);
+    setState(() {
+      isloaded = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    fetch();
     return Scaffold(
       appBar: AppBar(),
       body: Column(
@@ -76,7 +88,10 @@ class _ImageUploadState extends State<ImageUpload> {
           FlatButton.icon(
               onPressed: () => upload(_image),
               icon: Icon(Icons.upload_rounded),
-              label: Text("Upload now"))
+              label: Text("Upload now")),
+          isloaded
+              ? Image.network('http://192.168.0.8:3000/${result[0]['image']}')
+              : CircularProgressIndicator(),
         ],
       ),
     );
