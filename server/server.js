@@ -12,7 +12,7 @@ app.get('/',(req, res) => {
  
  });
  
- app.use('/uploads',(req, res) =>express.static('/uploads/'))
+ app.use('/uploads', express.static(__dirname +'/uploads'));
  var storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, 'uploads')
