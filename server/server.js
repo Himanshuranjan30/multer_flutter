@@ -45,7 +45,7 @@ app.get('/',(req, res) => {
    
   })
 
-mongoose.connect("mongodb+srv://himu:himu@cluster0.qkmvt.mongodb.net/test?retryWrites=true&w=majority",{ useNewUrlParser: true },()=>{
+mongoose.connect(MONGO_DB_URL,{ useNewUrlParser: true },()=>{
   console.log('db connnected')
 })
 app.listen(3000);
