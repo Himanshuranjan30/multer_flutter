@@ -6,7 +6,6 @@ const models= require('./model')
 const app= express();
 const mongoose= require('mongoose');
 const model = require('./model');
-const { FILE } = require('dns');
 app.get('/',(req, res) => {
     res.send('We are at home')
  
